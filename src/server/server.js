@@ -12,4 +12,3 @@ app.get('*', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server started at http://localhost:${PORT}!`)
 });
-

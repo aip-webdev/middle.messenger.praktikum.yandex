@@ -1,0 +1,24 @@
+@import "src/styles/colors.module";
+@import "src/styles/mixins.module";
+
+.chatMessage {
+  max-width: 32vw;
+  background-color: $grayF8;
+  padding: 1.4vh;
+  position: relative;
+  border-radius: 1em;
+}
+
+.messageContent {
+  font-size: 1.8vh;
+}
+
+.time {
+  line-height: 1.9vh;
+  color: $gray;
+  font-size: 1.2vh;
+  position: absolute;
+  bottom: 0.3vh;
+
+  right: 2%;
+}

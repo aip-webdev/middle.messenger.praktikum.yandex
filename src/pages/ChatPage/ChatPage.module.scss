@@ -1,0 +1,68 @@
+@import "src/styles/colors.module";
+@import "src/styles/mixins.module";
+
+.chat {
+  @include pageContainer();
+}
+
+.chatContentEmpty {
+  width: 75vw;
+  height: 100vh;
+  @include listColumn();
+  justify-content: center;
+  @include grayColor();
+}
+
+.chatsList {
+  @include listColumn();
+  @include transparentScroll;
+  border-top: 1px solid $grayEA;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+
+}
+.chatItem, .chatItemSelected {
+  width: 25vw;
+  a {
+    @include navItemWith();
+    height: 9.3vh;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+
+    border-bottom: 1px solid $grayEA;
+  }
+}
+
+.chatItemSelected {
+  background-color: $lightBlue;
+}
+
+.nav {
+  @include flexCenter();
+  flex-direction: column;
+  width: 25vw;
+  height: 100vh;
+  background-color: $grayFB;
+  padding: 1.4vh 0;
+}
+
+.profileNav {
+  display: flex;
+  justify-content: flex-end;
+  @include navItemWith();
+  a {
+    font-size: 1.9vh;
+    color: $gray;
+    padding-right: 1.6vh;
+    position: relative;
+    svg {
+      @include absoluteTopCenter();
+      right: 0;
+    }
+  }
+}
+

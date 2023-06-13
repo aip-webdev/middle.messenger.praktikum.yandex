@@ -1,6 +1,5 @@
-import {App} from "../App.js";
+import {App} from "../index.js";
 
 document.addEventListener('DOMContentLoaded', () => {
-    const root = document.querySelector('#app')
-    root.innerHTML = App()
+ document.querySelector('#app').innerHTML = App()
 })

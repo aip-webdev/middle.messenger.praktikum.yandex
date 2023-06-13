@@ -1,0 +1,72 @@
+@import "src/styles/colors.module";
+@import "src/styles/mixins.module";
+
+.form {
+  @include listColumn();
+  height: inherit;
+  margin: 0;
+}
+
+.userInfoList {
+  margin-top: 13.5vh;
+  width: 100%;
+}
+
+.userInfoListItem {
+  @include flexRow();
+  border-bottom: 1px solid $grayEA;
+  line-height: 4.5vh;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+
+  &:last-child {
+    border: none;
+  }
+
+}
+
+.infoValue, .infoValueError {
+  @include grayColor();
+  text-align: right;
+  width: auto;
+  line-height: inherit;
+  z-index: 1000;
+
+  &::placeholder {
+    @include grayColor();
+    text-align: right;
+  }
+}
+
+.infoValueError {
+  @include redColor();
+
+  &::placeholder {
+    @include grayColor();
+  }
+}
+
+.editBtn, .logoutBtn {
+  color: $darkblue;
+  line-height: 4.5vh;
+}
+
+.logoutBtn {
+  @include redColor();
+}
+
+.saveBtn {
+  margin: 8.3vh auto 0;
+  @include blueHalfBtn
+}
+
+
+.textError {
+  z-index: 900;
+  @include redColor();
+  font-size: 1vh;
+  position: absolute;
+  right: 0;
+  top: 35%;
+}

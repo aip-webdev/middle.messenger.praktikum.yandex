@@ -9,9 +9,9 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build && cp src/server/server.js build && cp package.json build",
+    "build": "vite build && cp src/server/server.js build",
     "preview": "vite preview",
-    "start": "node server.js"
+    "start": "npm run build && node build/server.js"
   },
   "devDependencies": {
     "sass": "^1.62.1",

@@ -1,0 +1,67 @@
+@import "src/styles/colors.module";
+@import "src/styles/mixins.module";
+
+.avatar {
+  @include avatar;
+  height: 4.9vh;
+  width: 4.9vh;
+  margin-right: 1.4vh;
+}
+
+.chatContent {
+  width: 75vw;
+  height: 100vh;
+  @include listColumn;
+  padding: 0 1.5vw;
+}
+
+.chatBtn {
+  @include flexCenter();
+  margin-right: 1.4vh;
+}
+
+.chatHistory {
+  @include transparentScroll;
+  @include listColumn();
+  align-items: normal;
+  height: 100%;
+  justify-content: flex-start;
+  padding-top: 1.4vh;
+
+}
+
+.messageForm {
+  background-color: $grayEF;
+  border-radius: 30px;
+  height: 100%;
+  margin: 0 1.4vh;
+  padding: 0 2.8vh;
+  width: 100%;
+}
+
+.input {
+  @include grayInput();
+  padding: 0;
+  &::placeholder {
+    text-align: left;
+  }
+}
+
+.top, .foot {
+  width: 100%;
+  padding: 1.4vh 0;
+  @include flexRow();
+  justify-content: space-between;
+}
+
+.foot {
+  border-top: 1px solid $grayEA;
+}
+
+.top {
+  border-bottom: 1px solid $grayEA;
+}
+
+.userBlock {
+  @include flexRow
+}
