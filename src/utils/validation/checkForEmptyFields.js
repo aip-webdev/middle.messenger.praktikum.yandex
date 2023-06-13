@@ -2,7 +2,7 @@ import {isEmpty} from "./isEmpty.js";
 import {errorInputText} from "../../components/AuthForm/errorInputText.js";
 import {setErrorStyle} from "./helpers.js";
 
-export const checkForEmptyFields = (style, errorStyle, textErrorStyle, fillFromPlaceholder = false ) => {
+export const checkForEmptyFields = (style = null, errorStyle = null, textErrorStyle = null, fillFromPlaceholder = false) => {
     if (fillFromPlaceholder) {
         let inputs = document.getElementsByTagName('input')
         Object.entries(inputs)
@@ -19,6 +19,7 @@ export const checkForEmptyFields = (style, errorStyle, textErrorStyle, fillFromP
     const passInputs = document.querySelectorAll('[data-password]')
     return checkEmptyValue([...textInputs, ...phoneInputs, ...mailInputs, ...passInputs], style, errorStyle, textErrorStyle)
 }
+
 export const checkEmptyValue = (list, style, errorStyle, textErrorStyle) => {
     let correct = true
     list.forEach((input) => {

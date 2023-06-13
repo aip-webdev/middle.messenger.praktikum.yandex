@@ -1,4 +1,3 @@
-
 import {checkMail} from "../../utils/validation/checkEmailFields.js";
 import {pushHistory} from "../../routing/index.js";
 import {checkPasswordFields} from "../../utils/validation/checkPassworFields.js";

@@ -16,4 +16,3 @@ export const loginPage = () => {
         'data-form-login'
     )
 }
-

@@ -6,7 +6,6 @@ import {mockChatList} from "../pages/ChatPage/mockChatList.js";
 import {mockUserInfo} from "../components/UserInfo/mockUserInfo.js";
 import {profileRouter} from "./profileRouter.js";
 
-
 export const index = () => {
     let paths = window.location.pathname.toString().slice(1).split('/')
     let chatList = mockChatList()

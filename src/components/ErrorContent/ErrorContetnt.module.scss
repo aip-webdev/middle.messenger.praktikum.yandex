@@ -10,9 +10,10 @@
   text-align: center;
 }
 
-
 .link {
+  display: block;
   font-size: 1.4vh;
   text-align: center;
   color: $darkblue;
+  width: inherit;
 }
