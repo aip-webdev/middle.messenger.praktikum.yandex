@@ -1,0 +1,19 @@
+@import "src/styles/colors.module";
+@import "src/styles/mixins.module";
+
+.nav {
+  @include flexCenter();
+  background-color: $grayFB;
+  width: 5vw;
+}
+
+.profile {
+  @include pageContainer();
+}
+
+.profileContent {
+  @include flexCenter();
+  flex-direction: column;
+  margin: 0 auto;
+  width: 40vw;
+}

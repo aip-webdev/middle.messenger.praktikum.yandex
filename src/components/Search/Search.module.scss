@@ -1,0 +1,19 @@
+@import "src/styles/colors.module";
+@import "src/styles/mixins.module";
+
+.search {
+  height: 4.4vh;
+  background-color: $grayEF;
+  border-radius: 5px;
+  position: relative;
+  svg {
+    @include absoluteTopCenter();
+    left: 1vw;
+  }
+
+  margin: 0 1.4vh 1.4vh;
+}
+
+.input {
+  @include grayInput();
+}
