@@ -1,19 +1,18 @@
-import {authForm} from '../../components/AuthForm/index.js';
+import {AuthForm} from '../../components/AuthForm/index.js';
 import {mainLoaded} from "../../utils/events/mainLoaded.js";
 import {dataPhonePattern} from "../../utils/validation/dataPhonePattern.js";
-import {checkRegistrationForm} from "./checkRegistrationForm.js";
 import {registrationFormInputs} from "./registrationFormInputs.js";
-export const registrationPage = () => {
+
+export const RegistrationPage = () => {
     mainLoaded(() => {
-        checkRegistrationForm()
         dataPhonePattern()
     })
-    return authForm(
+    return AuthForm(
         'Регистрация',
         'Зaрегистрироваться',
         'Войти',
+        'registration',
         '/signIn',
-        registrationFormInputs,
-        'data-form-registration'
+        registrationFormInputs
     )
 }

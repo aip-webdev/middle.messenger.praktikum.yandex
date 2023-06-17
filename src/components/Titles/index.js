@@ -1,3 +1,3 @@
 import styles from './Titles.module.scss'
-
-export const titleH3 = (text) => `<h3 class=${styles.title3}>${text}</h3>`
+import Handlebars from "handlebars";
+export const H3 = (text) => Handlebars.compile(`<h3 class=${styles.title3}>${text}</h3>`)()

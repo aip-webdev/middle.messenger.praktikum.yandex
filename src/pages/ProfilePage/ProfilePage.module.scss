@@ -3,6 +3,7 @@
 
 .nav {
   @include flexCenter();
+  align-items: center;
   background-color: $grayFB;
   width: 5vw;
 }
@@ -16,4 +17,12 @@
   flex-direction: column;
   margin: 0 auto;
   width: 40vw;
+}
+
+.arrowBtn {
+  background: center url("../../client/public/arrow.png") no-repeat;
+  background-size: 30px 30px;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
 }

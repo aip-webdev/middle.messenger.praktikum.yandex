@@ -1,7 +1,7 @@
 @import "src/styles/mixins.module";
 @import "src/styles/colors.module";
 
-.chatContentEmpty {
+.content {
   @include flexCenter();
   flex-direction: column;
 }

@@ -5,8 +5,8 @@
   @include flexCenter();
   flex-direction: column;
   width: 26.5vw;
-  min-height: 62.5vh;
-  max-height: 85.5vh;
+  min-height: 450px;
+  max-height: fit-content;
   background-color: $white;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
   border-radius: 12px;

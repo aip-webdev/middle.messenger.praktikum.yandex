@@ -2,18 +2,21 @@
 @import "src/styles/mixins.module";
 
 .search {
-  height: 4.4vh;
-  background-color: $grayEF;
+  background: $grayEF url("../../client/public/search.png") no-repeat left;
+  background-position: 3% 50%;
+  background-size: 20px 20px;
   border-radius: 5px;
+  height: 4.4vh;
   position: relative;
-  svg {
-    @include absoluteTopCenter();
-    left: 1vw;
-  }
-
   margin: 0 1.4vh 1.4vh;
 }
 
 .input {
   @include grayInput();
+
+  margin-left: 10px;
+  padding: 0 25px;
+  &::placeholder {
+    text-align: left;
+  }
 }

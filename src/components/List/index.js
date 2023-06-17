@@ -1,11 +1,8 @@
 import {isEmpty} from "../../utils/validation/isEmpty.js";
+import Handlebars from "handlebars";
 
-export const list = (listStyle, itemStyle, items) => {
+export const List = ({listStyle, itemStyle, items}) => {
     let itemsStr = ''
     !isEmpty(items) && items.forEach(item => itemsStr += `<li class=${itemStyle}>${item}</li>`)
-    return(`
-        <ul class=${listStyle}>
-            ${itemsStr}
-        </ul>
-    `)
+    return Handlebars.compile(`<ul class=${listStyle}>${itemsStr}</ul>`)()
 }

@@ -1,32 +1,39 @@
 import styles from './ChatPage.module.scss'
-import {list} from "../../components/List/index.js";
-import {search} from "../../components/Search/index.js";
-import {chatItem} from "../../components/ChatItem/index.js";
+import {List} from "../../components/List/index.js";
+import {Search} from "../../components/Search/index.js";
+import {ChatItem} from "../../components/ChatItem/index.js";
+import {Link} from "../../components/Link/index.js";
+import Handlebars from "handlebars";
+import {pushHistory} from "../../routing/index.js";
 
-export const chatPage = (chatContent, mockChats) => {
-    let chatItems = mockChats.map((chat) => chatItem(chat.id, chat.name, chat.lastMessage, chat.unreadCount))
-    return (`
+export const ChatPage = (mockChats) => {
+    let chatItems = mockChats.map((chatInfo) => ChatItem(chatInfo))
+    return Handlebars.compile(`
         <div class=${styles.chat}>
             <nav class=${styles.nav}>
-                ${profileNav()}
-                ${search()}
-                ${list(styles.chatsList, styles.chatItem, chatItems)}
+                ${ProfileNav()}
+                ${Search()}
+                ${List({
+                    listStyle: styles.chatsList,
+                    itemStyle: styles.chatItem,
+                    items: chatItems
+                })}
             </nav>
-                ${!!chatContent ? chatContent : 
-                    `<section class=${styles.chatContentEmpty}>
+            <section id='chat-content' class=${styles.chatContent}>
+                <div class=${styles.emptyContent}>
                         <div>Выберите чат чтобы отправить сообщение</div>
-                     </section>`
-                }
+                </div>            
+            </section>
         </div>
-    `)
+    `)()
 }
 
-const profileNav = () => `
-    <div class=${styles.profileNav}>
-        <a href="/profile">Профиль
-            <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 9L5 5L1 1" stroke="#999999"/>
-            </svg>
-        </a>
+const ProfileNav = () => Handlebars.compile(`
+    <div class=${styles.profileNav}> 
+        ${Link({
+            children: 'Профиль', 
+            onClick: () => pushHistory('/profile'), 
+            style: styles.profileLink
+        })}
     </div>
-`
+`)()

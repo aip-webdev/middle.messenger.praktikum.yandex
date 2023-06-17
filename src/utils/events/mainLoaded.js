@@ -1,4 +1,3 @@
-export const mainLoaded = (handler) =>
-    document.querySelector('#main') ?
-        handler() :
-        setTimeout(() => mainLoaded(handler), 100)
+import {waitElement} from "../waitElement.js";
+
+export const mainLoaded = (handler) => waitElement('main').then(() => handler())

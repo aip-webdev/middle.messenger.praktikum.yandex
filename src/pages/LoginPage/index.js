@@ -1,18 +1,16 @@
-import {authForm} from "../../components/AuthForm/index.js";
-import {mainLoaded} from "../../utils/events/mainLoaded.js";
-import {checkLoginForm} from "./checkLoginForm.js";
+import Handlebars from "handlebars";
+import {AuthForm} from "../../components/AuthForm/index.js";
 import {loginFormInputs} from "./loginFormInputs.js";
 
-export const loginPage = () => {
-    mainLoaded(() => {
-        checkLoginForm()
-    })
-    return authForm(
-        'Вход',
-        'Авторизоваться',
-        'Нет аккаунта?',
-        '/signUp',
-        loginFormInputs,
-        'data-form-login'
-    )
+export const LoginPage = () => {
+    return Handlebars.compile(
+        AuthForm(
+            'Вход',
+            'Авторизоваться',
+            'Нет аккаунта?',
+            'authorization',
+            '/signUp',
+            loginFormInputs
+        )
+    )()
 }

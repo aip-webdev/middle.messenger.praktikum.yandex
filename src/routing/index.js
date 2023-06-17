@@ -1,40 +1,52 @@
 import {isEmpty} from "../utils/validation/isEmpty.js";
-import {notFoundPage} from "../pages/NotFoundPage/index.js";
+import {NotFoundPage} from "../pages/NotFoundPage/index.js";
 import {routes} from "./routes.js";
 import {chatRouter} from "./chatRouter.js";
 import {mockChatList} from "../pages/ChatPage/mockChatList.js";
 import {mockUserInfo} from "../components/UserInfo/mockUserInfo.js";
 import {profileRouter} from "./profileRouter.js";
+import Handlebars from "handlebars";
+import {waitElement} from "../utils/waitElement.js";
+import {LoginPage} from "../pages/LoginPage/index.js";
+import {RegistrationPage} from "../pages/RegistrationPage/index.js";
 
-export const index = () => {
+export const getPage = () => {
     let paths = window.location.pathname.toString().slice(1).split('/')
     let chatList = mockChatList()
-    let page
-    console.log(paths)
-    switch(paths[0]) {
+    let userInfo = mockUserInfo
+    switch (paths[0]) {
+        case '':
+        case '/':
+        case 'signIn':
+            waitElement('main').then((mainEl) => mainEl.innerHTML = LoginPage())
+            return null
+        case 'signUp':
+            waitElement('main').then((mainEl) => mainEl.innerHTML = RegistrationPage())
+            return null
         case 'chats':
-            page =  paths.length === 2 ? chatRouter(paths[1], chatList) : chatRouter(null, chatList)
-            break;
+            return paths.length === 2 ? chatRouter(paths[1], chatList) : chatRouter(null, chatList)
         case 'profile':
-            page = paths.length === 2 ? profileRouter(paths[1], mockUserInfo) : profileRouter(null, mockUserInfo)
-            break;
+            return paths.length === 2 ? profileRouter(paths[1], userInfo) : profileRouter(null, userInfo)
     }
-    return page || routes[`/${paths[0]}`] || notFoundPage()
+    return routes[`/${paths[0]}`] || NotFoundPage()
 }
 
 const handleRoute = (e) => {
+    !!e ? e.preventDefault() : {}
     const main = document.querySelector('#main')
-    !!e ? e.stopPropagation() : {}
-    const page = index()
+    const page = getPage()
     if (!isEmpty(page)) {
-        main.innerHTML = index()
+        main.innerHTML = Handlebars.compile(page)()
     }
 }
 window.onpopstate = history.onpushstate = handleRoute
 
 export const pushHistory = (route) => {
-    history.pushState({}, null, `${window.location.origin}${route}`)
+    let state = {page: route};
+    history.pushState(state, '', state.page);
     handleRoute()
 }
 
 window.addEventListener('popstate', handleRoute);
+window.addEventListener('hashchange', handleRoute);
+window.addEventListener('load', handleRoute);
