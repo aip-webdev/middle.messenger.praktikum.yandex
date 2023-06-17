@@ -13,4 +13,3 @@ export const clickEvent = (id, handler) => waitElement(id).then((element) =>
         }
     })
 )
-
