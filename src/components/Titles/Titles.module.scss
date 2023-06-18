@@ -1,0 +1,5 @@
+@import "src/styles/mixins.module";
+
+.title3 {
+  @include titleh3
+}

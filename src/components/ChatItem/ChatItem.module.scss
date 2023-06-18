@@ -1,0 +1,56 @@
+@import "src/styles/colors.module";
+@import "src/styles/mixins.module";
+
+.avatar {
+  @include avatar;
+}
+
+.infoLeft, .infoRight {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  height: 100%;
+  position: relative;
+}
+
+.infoLeft {
+  flex-basis: 70%;
+}
+
+.infoRight {
+  flex-basis: 10%;
+}
+
+.name, .message {
+  width: 100%;
+  text-align: left;
+}
+
+.message {
+  font-size: 1.7vh;
+  @include grayColor
+}
+
+.unreadCount {
+  font-size: 12px;
+  line-height: 20px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  background-color: $darkblue;
+  border-radius: 50%;
+  color: $white;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.time {
+  min-width: 2vw;
+  font-size: 1.2vh;
+  @include grayColor();
+  text-align: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+}

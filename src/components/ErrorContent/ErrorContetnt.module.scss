@@ -1,0 +1,19 @@
+@import "src/styles/mixins.module";
+@import "src/styles/colors.module";
+
+.content {
+  @include flexCenter();
+  flex-direction: column;
+}
+.code {
+  font-size: 8vh;
+  text-align: center;
+}
+
+.link {
+  display: block;
+  font-size: 1.4vh;
+  text-align: center;
+  color: $darkblue;
+  width: inherit;
+}
