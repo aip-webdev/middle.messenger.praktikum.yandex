@@ -8,7 +8,7 @@ export const template = `
             <section id='chat-content' class={{chatContentClassName}}>
                 <div class={{emptyContentClassName}}>
                         <div>Выберите чат, чтобы отправить сообщение</div>
-                </div>            
+                </div>
             </section>
         </div>
     `
