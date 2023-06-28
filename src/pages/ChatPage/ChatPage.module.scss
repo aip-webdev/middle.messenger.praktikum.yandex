@@ -1,8 +1,8 @@
 @import "src/styles/colors.module";
 @import "src/styles/mixins.module";
 
-.chat {
-  @include pageContainer();
+.container {
+  @include page-container;
 }
 
 .chatContent {
@@ -11,65 +11,57 @@
 }
 
 .emptyContent {
+  @include list-column;
+  @include gray-color;
+
   width: 100%;
   height: 100%;
-  @include listColumn();
   justify-content: center;
-  @include grayColor();
 }
 
 .chatsList {
-  @include listColumn();
-  @include transparentScroll;
+  @include list-column;
+  @include transparent-scroll;
+
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
 }
+
+.chatItemSelected {
+  background-color: $light-blue;
+}
+
 .chatItem, .chatItemSelected {
   width: 100%;
   padding: 0 1.4vh;
+
   a {
-    @include navItemWith();
+    @include nav-item-with;
+
     height: 9.3vh;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
     position: relative;
-    border-bottom: 1px solid $grayEA;
+    border-bottom: 1px solid $gray-ea;
   }
+
   &:first-child {
     a {
-      border-top: 1px solid $grayEA;
+      border-top: 1px solid $gray-ea;
     }
   }
 }
 
-.chatItemSelected {
-  background-color: $lightBlue;
-}
 
 .nav {
-  @include flexCenter();
+  @include flex-center;
+
   flex-direction: column;
   width: 25vw;
   height: 100vh;
-  background-color: $grayFB;
+  background-color: $gray-fb;
   padding: 1.4vh 0;
-}
-
-.profileNav {
-  display: flex;
-  justify-content: flex-end;
-  @include navItemWith();
-  padding: 1.4vh;
-
-}
-
-.profileLink {
-  background: right url("../../client/public/arrowhead.svg") no-repeat;
-  background-size: 12px 12px;
-  font-size: 1.9vh;
-  color: $gray;
-  padding-right: 1.6vh;
 }

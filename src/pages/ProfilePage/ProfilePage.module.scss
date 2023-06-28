@@ -2,18 +2,20 @@
 @import "src/styles/mixins.module";
 
 .nav {
-  @include flexCenter();
+  @include flex-center;
+
   align-items: center;
-  background-color: $grayFB;
+  background-color: $gray-fb;
   width: 5vw;
 }
 
-.profile {
-  @include pageContainer();
+.container {
+  @include page-container;
 }
 
 .profileContent {
-  @include flexCenter();
+  @include flex-center;
+
   flex-direction: column;
   margin: 0 auto;
   width: 40vw;

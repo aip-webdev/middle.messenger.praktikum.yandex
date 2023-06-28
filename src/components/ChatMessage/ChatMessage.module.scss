@@ -3,7 +3,7 @@
 
 .chatMessage {
   max-width: 32vw;
-  background-color: $grayF8;
+  background-color: $gray-f8;
   padding: 1.4vh;
   position: relative;
   border-radius: 1em;
@@ -19,6 +19,5 @@
   font-size: 1.2vh;
   position: absolute;
   bottom: 0.3vh;
-
   right: 2%;
 }

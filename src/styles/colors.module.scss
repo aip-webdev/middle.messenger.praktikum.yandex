@@ -1,32 +1,14 @@
 $black: #1E1E1E;
-$lightBlue: #D3EAFF;
+$light-blue: #D3EAFF;
 $blue: #0085FF;
-$darkblue: #3369F3;
-$lightblue: #E4EDFD;
+$dark-blue: #3369F3;
+$light-blue: #E4EDFD;
 $red: #FF2F2F;
-$whiteLightness: 100%;
-$white: hsl(0, 0%, $whiteLightness);
-$grayE5: #e5e5e5;
-$grayF8: #f8f8f8;
-$grayEA: #eaeaea;
-$grayEF: #efefef;
-$grayFB: #FBFBFB;
+$white-lightness: 100%;
+$white: hsl(0deg, 0%, $white-lightness);
+$gray-e5: #e5e5e5;
+$gray-f8: #f8f8f8;
+$gray-ea: #eaeaea;
+$gray-ef: #efefef;
+$gray-fb: #FBFBFB;
 $gray: #999;
-
-
-:export {
-  black:$black;
-  lightBlue: $lightBlue;
-  blue: $blue;
-  darkblue:$darkblue;
-  red:$red;
-  whiteLightness: $whiteLightness;
-  white: $white;
-  grayE5: $grayE5;
-  grayEA: $grayEA;
-  grayEF: $grayEF;
-  grayFB: $grayFB;
-  gray: $gray;
-  grayF8: $grayF8;
-  lightblue: $lightblue;
-}

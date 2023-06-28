@@ -1,4 +1,5 @@
 @import "colors.module";
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -6,14 +7,15 @@
   font-size: 1.9vh;
   background-color: transparent;
   overflow: hidden;
-  &::-webkit-scrollbar {
-    width: 0;
-  }
   font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 }
 
 a {
@@ -40,8 +42,6 @@ input {
   color: $black;
   background-color: transparent;
   background-image: none;
-  -webkit-box-shadow:0 0 0 50px transparent inset; /* Change the color to your own background color */
-  -webkit-text-fill-color: #333;
 }
 
 input:-webkit-autofill,
@@ -53,7 +53,7 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  -webkit-text-fill-color: $black ;
+  -webkit-text-fill-color: $black;
   -webkit-box-shadow: 0 0 0 1000px transparent inset;
   transition: background-color 5000s ease-in-out 0s;
 }
@@ -66,5 +66,5 @@ select:-webkit-autofill:focus {
   margin: 0;
   padding: 0;
   outline: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0%);
 }

@@ -2,7 +2,8 @@
 @import "src/styles/mixins.module";
 
 .form {
-  @include listColumn();
+  @include list-column;
+
   height: inherit;
   margin: 0;
 }
@@ -13,8 +14,9 @@
 }
 
 .userInfoListItem {
-  @include flexRow();
-  border-bottom: 1px solid $grayEA;
+  @include flex-row;
+
+  border-bottom: 1px solid $gray-ea;
   line-height: 4.5vh;
   justify-content: space-between;
   position: relative;
@@ -26,46 +28,28 @@
 }
 
 .infoValue, .infoValueError {
-  @include grayColor();
-  text-align: right;
-  width: auto;
-  line-height: inherit;
-  z-index: 1000;
-
-  &::placeholder {
-    @include grayColor();
-    text-align: right;
-  }
+  @include input-chat-profile;
 }
 
 .infoValueError {
-  @include redColor();
-
-  &::placeholder {
-    @include grayColor();
-  }
+  @include input-chat-profile-fail;
 }
 
 .editBtn, .logoutBtn {
-  color: $darkblue;
+  color: $dark-blue;
   line-height: 4.5vh;
 }
 
 .logoutBtn {
-  @include redColor();
+  @include red-color;
 }
 
 .saveBtn {
+  @include blue-half-btn;
+
   margin: 8.3vh auto 0;
-  @include blueHalfBtn
 }
 
-
 .textError {
-  z-index: 900;
-  @include redColor();
-  font-size: 1vh;
-  position: absolute;
-  right: 0;
-  top: 35%;
+  @include error-text-profile-chat;
 }

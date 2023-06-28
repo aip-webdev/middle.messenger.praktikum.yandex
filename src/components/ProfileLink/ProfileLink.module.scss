@@ -1,0 +1,18 @@
+@import "src/styles/colors.module";
+@import "src/styles/mixins.module";
+
+.container {
+  @include nav-item-with;
+
+  display: flex;
+  justify-content: flex-end;
+  padding: 1.4vh;
+}
+
+.profileLink {
+  background: right url("../../client/public/arrowhead.svg") no-repeat;
+  background-size: 12px 12px;
+  font-size: 1.9vh;
+  color: $gray;
+  padding-right: 1.6vh;
+}

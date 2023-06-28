@@ -2,7 +2,7 @@
 @import "src/styles/mixins.module";
 
 .search {
-  background: $grayEF url("../../client/public/search.png") no-repeat left;
+  background: $gray-ef url("../../client/public/search.png") no-repeat left;
   background-position: 3% 50%;
   background-size: 20px 20px;
   border-radius: 5px;
@@ -12,10 +12,11 @@
 }
 
 .input {
-  @include grayInput();
+  @include gray-input;
 
   margin-left: 10px;
   padding: 0 25px;
+
   &::placeholder {
     text-align: left;
   }
