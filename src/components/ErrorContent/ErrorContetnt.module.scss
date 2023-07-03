@@ -2,9 +2,11 @@
 @import "src/styles/colors.module";
 
 .content {
-  @include flexCenter();
+  @include flex-center;
+
   flex-direction: column;
 }
+
 .code {
   font-size: 8vh;
   text-align: center;
@@ -14,6 +16,6 @@
   display: block;
   font-size: 1.4vh;
   text-align: center;
-  color: $darkblue;
+  color: $dark-blue;
   width: inherit;
 }

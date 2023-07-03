@@ -2,13 +2,14 @@
 @import "src/styles/mixins.module";
 
 .authForm {
-  @include flexCenter();
+  @include flex-center;
+
   flex-direction: column;
   width: 26.5vw;
   min-height: 450px;
   max-height: fit-content;
   background-color: $white;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 14%);
   border-radius: 12px;
   padding: 5.5vh 2.3vw 2.1vh;
 }
@@ -19,8 +20,9 @@
     border-radius: 1vh;
     font-size: 1.9vh;
   }
+
   &_submit {
-    background-color: $darkblue;
+    background-color: $dark-blue;
     color: $white;
     line-height: 5.1vh;
     margin: 5.5vh 0 2vh;
@@ -28,13 +30,13 @@
 
   &_change {
     background-color: $white;
-    color: $darkblue;
+    color: $dark-blue;
     line-height: 5.1vh;
   }
 }
 
 .list {
-  @include listColumn();
+  @include list-column;
 }
 
 .listItem {
@@ -42,6 +44,7 @@
   height: 5vh;
   position: relative;
   margin-bottom: 2.3vh;
+
   label {
     color: $gray;
     position: absolute;
@@ -53,21 +56,23 @@
 }
 
 .inputField, .inputFieldError {
-    position: relative;
-    border-bottom: 1px solid #3369F3;
+  position: relative;
+  border-bottom: 1px solid #3369F3;
 }
 
 .inputField {
   color: $black;
+
   &::placeholder {
-    @include grayColor();
+    @include gray-color;
   }
 }
 
 .inputFieldError, .inputTextError {
-  @include redColor();
+  @include red-color;
+
   &::placeholder {
-    @include grayColor();
+    @include gray-color;
   }
 }
 

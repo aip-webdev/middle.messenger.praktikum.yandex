@@ -1,12 +1,12 @@
 @import "src/styles/colors.module";
 
-@mixin flexCenter {
+@mixin flex-center {
   display: flex;
   justify-content: center;
   align-content: space-between;
 }
 
-@mixin listColumn {
+@mixin list-column {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -16,18 +16,18 @@
   margin: 0 0 auto;
 }
 
-@mixin flexRow {
+@mixin flex-row {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
 }
 
-@mixin navItemWith {
+@mixin nav-item-with {
   padding: 1.4vh 0;
   margin: 0;
 }
 
-@mixin titleh3 {
+@mixin title-h3 {
   text-align: center;
   font-size: 2.5vh;
   font-style: normal;
@@ -35,23 +35,23 @@
   margin-bottom: 4.4vh;
 }
 
-@mixin grayColor {
+@mixin gray-color {
   color: $gray;
   -webkit-text-fill-color: $gray
 }
 
-@mixin redColor {
+@mixin red-color {
   color: $red;
   -webkit-text-fill-color: $red
 }
 
-@mixin absoluteTopCenter {
+@mixin absolute-top-center {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
 }
 
-@mixin transparentScroll {
+@mixin transparent-scroll {
   &::-webkit-scrollbar {
     padding-left: 0;
     width: 0;
@@ -64,6 +64,7 @@
     background: transparent;
     z-index: 0;
   }
+
   &::-webkit-scrollbar-corner {
     background: transparent;
     z-index: 0;
@@ -76,32 +77,35 @@
 }
 
 @mixin avatar {
+  @include flex-center;
+
   height: 6.5vh;
   width: 6.5vh;
   border-radius: 50%;
-
-  @include flexCenter();
   align-items: center;
   margin-right: 1.1vh;
+
   span {
     color: $white;
   }
 }
 
-@mixin grayInput {
+@mixin gray-input {
   width: 100%;
   height: 100%;
   padding: 0 3vw;
   color: $black;
   position: relative;
+
   &::placeholder {
+    @include gray-color;
+
     text-align: center;
-    @include grayColor();
   }
 }
 
-@mixin blueHalfBtn {
-  background-color: $darkblue;
+@mixin blue-half-btn {
+  background-color: $dark-blue;
   border-radius: 8px;
   color: $white;
   line-height: 5vh;
@@ -109,11 +113,46 @@
   width: 50%;
 }
 
-@mixin pageContainer {
+@mixin page-container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-flow: row nowrap;
   height: 100vh;
   width: 100vw;
   background-color: $white;
+}
+
+@mixin input-chat-profile {
+  @include gray-color;
+
+  text-align: right;
+  width: auto;
+  line-height: inherit;
+  z-index: 1000;
+
+  &::placeholder {
+    @include gray-color;
+
+    text-align: right;
+  }
+}
+
+@mixin input-chat-profile-fail {
+  @include red-color;
+
+  text-align: right;
+  border-bottom: none;
+
+  &::placeholder {
+    @include gray-color;
+  }
+}
+
+@mixin error-text-profile-chat {
+  @include red-color;
+
+  z-index: 900;
+  font-size: 1vh;
+  position: absolute;
+  right: 0;
+  top: 35%;
 }

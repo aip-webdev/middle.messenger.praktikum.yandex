@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "baseUrl": "./src",
+    "declaration": false,
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "module": "commonjs",
+    "outDir": "build",
+    "resolveJsonModule": true,
+    "strictNullChecks": true,
+    "target": "es2022",
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "types": ["vite/client"],
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "useDefineForClassFields": true,
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictFunctionTypes": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": ["node_modules/", "build/", "public/"]
+}

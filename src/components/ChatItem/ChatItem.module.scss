@@ -27,8 +27,9 @@
 }
 
 .message {
+  @include gray-color;
+
   font-size: 1.7vh;
-  @include grayColor
 }
 
 .unreadCount {
@@ -37,7 +38,7 @@
   width: 20px;
   height: 20px;
   text-align: center;
-  background-color: $darkblue;
+  background-color: $dark-blue;
   border-radius: 50%;
   color: $white;
   position: absolute;
@@ -46,9 +47,10 @@
 }
 
 .time {
+  @include gray-color;
+
   min-width: 2vw;
   font-size: 1.2vh;
-  @include grayColor();
   text-align: center;
   position: absolute;
   right: 0;
