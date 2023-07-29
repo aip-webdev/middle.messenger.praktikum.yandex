@@ -2,7 +2,7 @@
 
 ### Учебный проект messenger от Яндекс.Практикум
 
-[Сборка в Netlify](https://reliable-salmiakki-311a25.netlify.app/)
+[Сборка в Netlify](https://deploy-preview-5--reliable-salmiakki-311a25.netlify.app/)
 
 [Ссылка на макет в Figma](https://www.figma.com/file/KNTCZXXiBQP3vwKKpwwD67/Chat_external_link-(Copy))
 

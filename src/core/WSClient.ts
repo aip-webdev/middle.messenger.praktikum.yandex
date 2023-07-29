@@ -65,8 +65,11 @@ function WSClient(): IWSClient {
 
     WSClient.prototype.send = function(chatId: number, message: unknown) {
         const ws = sockets.find(socket => socket.chatId === chatId)?.ws as WebSocket
-        ws.send(JSON.stringify(message))
-
+        try {
+            ws.send(JSON.stringify(message))
+        } catch (e) {
+            console.log('Ошибка', e)
+        }
     }
     const setMessageToState = (chatId: number, message: IMessage | IMessage[]) => {
         const chatList = Store.getState().chats.list

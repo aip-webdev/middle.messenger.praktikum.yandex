@@ -6,6 +6,7 @@ import { getFormData } from '../utils/validation/getFormData.ts'
 import checkValidate from '../utils/decorators/checkValidate.ts'
 import { isEmpty } from '../utils/common/isEmpty.ts'
 import Store from '../store'
+import UserApi from '../api/UserApi.ts'
 
 function AuthActions() {
     const login = async (loginData: ILoginData | unknown) => {
@@ -32,9 +33,12 @@ function AuthActions() {
                 )
             )
 
-    const updateUserInfo = () => AuthApi.getUser().then((req) => {
-        const userInfo = req.data as IUserData
-        Store.set('user', userInfo, STORE_EVENTS.GET_USER_DATA_SUCCESS)
+    const updateUserInfo = () => AuthApi.getUser().then((res) => {
+        let userInfo = res.data as IUserData
+        UserApi.getUserById(userInfo.id as number).then(res => {
+            userInfo = res.data as IUserData
+            Store.set('user', userInfo, STORE_EVENTS.GET_USER_DATA_SUCCESS)
+        })
     })
 
     return Object.freeze({
