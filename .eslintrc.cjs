@@ -36,6 +36,8 @@ module.exports = {
     "semi": ["error", "never"],
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/ban-ts-comment": "off",
-    "no-undef": "off"
+    "@typescript-eslint/no-this-alias": "off",
+    "no-undef": "off",
+    "prefer-rest-params": "off"
   }
 };

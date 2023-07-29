@@ -1,5 +1,5 @@
 import { template } from './button.tmpl.ts'
-import Block from '../../utils/elements/Block.ts'
+import Block from '../../core/Block.ts'
 
 interface IButtonProps {
   children?: unknown;

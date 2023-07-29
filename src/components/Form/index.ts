@@ -1,16 +1,18 @@
 import { template } from './form.tmpl.js'
-import Block from '../../utils/elements/Block.ts'
+import Block from '../../core/Block.ts'
 
 interface IFormProps {
   children: unknown;
   style: string;
   actions?: object;
+  id?: string;
 }
 
 export function Form({
-    children, style, actions = {}
+    children, style, actions, id
 }: IFormProps) {
     return Block(template, {
+        id: id,
         style: style,
         children: children,
         events: { ...actions }

@@ -1,17 +1,18 @@
 import { AuthForm } from '../../components/AuthForm'
-import { dataPhonePattern } from '../../utils/validation/dataPhonePattern.ts'
 import { registrationFormInputs } from './registrationFormInputs.ts'
-import { waitElement } from '../../utils/elements/waitElement.ts'
 import { VALIDATION_TYPE } from '../../utils/validation/validateFields.ts'
+import AuthActions from '../../actions/AuthActions.ts'
+import Router from '../../routing/Router.ts'
+import { ROUTES } from '../../routing'
 
-export const RegistrationPage = () => {
-    waitElement('main').then(() => dataPhonePattern())
-    return AuthForm({
+export const RegistrationPage = () =>
+    AuthForm({
         title: 'Регистрация',
         submitBtnText: 'Зaрегистрироваться',
         changeBtnText: 'Войти',
         validation: VALIDATION_TYPE.SIGN_UP,
-        changeFormRoute: '/login',
-        inputsInfo: registrationFormInputs
+        inputsInfo: registrationFormInputs,
+        onSubmit: () => AuthActions.register(),
+        onChange: () => Router.go(ROUTES.LOGIN)
     })
-}
+

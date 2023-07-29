@@ -49,7 +49,8 @@
 .time {
   @include gray-color;
 
-  min-width: 2vw;
+  white-space: nowrap;
+  width: auto;
   font-size: 1.2vh;
   text-align: center;
   position: absolute;

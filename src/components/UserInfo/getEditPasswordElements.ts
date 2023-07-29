@@ -1,27 +1,12 @@
 import styles from './UserInfo.module.scss'
-import { pushHistory } from '../../routing'
 import { List } from '../List'
 import { Input } from '../Input'
 import { Form } from '../Form'
 import { Button } from '../Button'
-import Block from '../../utils/elements/Block.ts'
-import { validateFields, VALIDATION_TYPE } from '../../utils/validation/validateFields.ts'
+import Block from '../../core/Block.ts'
+import UserActions from '../../actions/UserActions.ts'
 
 export const getEditPasswordElements = () => {
-    const handler = (e: Event) => {
-        e.preventDefault()
-        e.stopPropagation()
-        validateFields({
-            validation: VALIDATION_TYPE.PASSWORD_CHANGE,
-            style: styles.infoValue,
-            errorStyle: styles.infoValueError,
-            textErrorStyle: styles.textError,
-            submitAction: true
-        })
-            ? pushHistory('/profile')
-            : {}
-    }
-
     const items = List({
         listStyle: styles.userInfoList,
         itemStyle: styles.userInfoListItem,
@@ -50,9 +35,8 @@ export const getEditPasswordElements = () => {
                 `, {
             button: Button({
                 children: 'Сохранить',
-                onClick: handler,
-                style: styles.saveBtn,
-                type: 'submit'
+                onClick: () => UserActions.changePassword(),
+                style: styles.saveBtn
             }),
             items: items
         }),

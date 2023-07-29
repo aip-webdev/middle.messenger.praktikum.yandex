@@ -1,0 +1,16 @@
+@import "src/styles/colors.module";
+@import "src/styles/mixins.module";
+
+.formStyle {
+  @include form-style;
+
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.button_submit {
+  @include blue-half-btn;
+
+  margin-top: 2vh;
+}
