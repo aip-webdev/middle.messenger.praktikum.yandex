@@ -1,4 +1,4 @@
-import { isEmpty } from './isEmpty.js'
+import { isEmpty } from '../common/isEmpty.js'
 import { errorInputText } from './errorInputText.js'
 import { removeErrorText, setErrorStyle } from './helpers'
 

@@ -35,6 +35,14 @@
   margin-bottom: 4.4vh;
 }
 
+@mixin title-h4 {
+  text-align: center;
+  font-size: 2vh;
+  font-style: normal;
+  font-weight: 500;
+  margin-bottom: 3.5vh;
+}
+
 @mixin gray-color {
   color: $gray;
   -webkit-text-fill-color: $gray
@@ -145,6 +153,18 @@
   &::placeholder {
     @include gray-color;
   }
+}
+
+@mixin form-style {
+  @include flex-center;
+
+  max-height: fit-content;
+  flex-direction: column;
+  background-color: $white;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 14%);
+  border-radius: 12px;
+  padding: 5.5vh 2.3vw 2.1vh;
+  width: 26.5vw;
 }
 
 @mixin error-text-profile-chat {

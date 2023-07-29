@@ -1,15 +1,15 @@
 import styles from './ChatMessage.module.scss'
 import { template } from './chatMessage.tmpl.ts'
-import { IMessage } from '../../pages/ChatPage/types'
-import Block from '../../utils/elements/Block.ts'
+import Block from '../../core/Block.ts'
+import { getTimeDifference } from '../../utils/strings/getTimeDifference.ts'
 
-export const ChatMessage = (message: IMessage) => {
-    const { text, time } = message
-    return Block(template, {
-        messageBlockStyle: styles.chatMessage,
+export const ChatMessage = (userId: number, message: IMessage | undefined) => {
+    const chatMessageStyle = message?.user_id === userId ? styles.chatMessageRight : styles.chatMessageLeft
+    return message ? Block(template, {
+        messageBlockStyle: chatMessageStyle,
         messageContentStyle: styles.messageContent,
         messageTimeStyle: styles.time,
-        content: text,
-        time: time
-    })
+        content: message.content,
+        time: getTimeDifference(message.time)
+    }) : ''
 }

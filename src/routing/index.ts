@@ -1,67 +1,71 @@
-import { isEmpty } from '../utils/validation/isEmpty.ts'
-import { NotFoundPage } from '../pages/NotFoundPage'
-import { IRoute, routes } from './routes.ts'
-import { chatRouter } from './chatRouter.js'
-import { mockChatList } from '../pages/ChatPage/mockChatList.ts'
-import { mockUserInfo } from '../components/UserInfo/mockUserInfo.ts'
-import { profileRouter } from './profileRouter.ts'
-import { waitElement } from '../utils/elements/waitElement.ts'
 import { RegistrationPage } from '../pages/RegistrationPage'
 import { LoginPage } from '../pages/LoginPage'
-import { BlockFactory } from '../utils/elements/Block.ts'
+import Router from './Router.ts'
+import { ProfilePage } from '../pages/ProfilePage'
+import { UserInfo } from '../components/UserInfo'
+import { ChatPage } from '../pages/ChatPage'
+import Store from '../store'
+import { STORE_EVENTS } from '../store/storeEvents.ts'
+import AuthActions from '../actions/AuthActions.ts'
+import ChatActions from '../actions/ChatActions.ts'
+import { EmptyContent } from '../pages/ChatPage/EmptyContent'
 
-export const getPage = (): null | BlockFactory => {
-    const paths = window.location.pathname.toString().slice(1).split('/')
-    const chatList = mockChatList
-    const userInfo = mockUserInfo
-    switch (paths[0]) {
-    case '':
-    case '/':
-    case 'login':
-        waitElement('main').then(mainEl => {
-            mainEl.innerHTML = ''
-            mainEl.appendChild(LoginPage().getContent() as Node)
-        })
-        return null
-    case 'registration':
-        waitElement('main').then(mainEl => {
-            mainEl.innerHTML = ''
-            mainEl.appendChild(RegistrationPage().getContent() as Node)
-        }
+export interface IRoutes {
+  SIGNUP: string;
+  ERROR: string;
+  CHAT: (id: number) => string;
+  MESSENGER: string;
+  LOGIN: string;
+  SETTINGS: string;
+  SETTINGS_EDIT: string;
+  SETTINGS_PASSWORD: string;
+  START: string;
+  START_SLASH: string;
+}
+
+export const ROUTES = {
+    ERROR: '/error',
+    CHAT: (id: number) => `/messenger/${id}`,
+    MESSENGER: '/messenger',
+    LOGIN: '/login',
+    SETTINGS: '/settings',
+    SETTINGS_EDIT: '/settings/edit',
+    SETTINGS_PASSWORD: '/settings/password',
+    SIGNUP: '/sign-up',
+    START: '',
+    START_SLASH: '/'
+
+} as IRoutes
+
+export default function AppRouter() {
+    Router
+        .use(ROUTES.START, LoginPage())
+        .use(ROUTES.START_SLASH, LoginPage())
+        .use(ROUTES.LOGIN, LoginPage())
+        .use(ROUTES.SIGNUP, RegistrationPage())
+        .use(ROUTES.MESSENGER, ChatPage({ content: EmptyContent() }))
+        .use(
+            ROUTES.SETTINGS,
+            ProfilePage(UserInfo({ edit: false, editPass: false }))
         )
-        return null
-    case 'chats':
-        return paths.length === 2
-            ? chatRouter({ id: paths[1], chatList })
-            : chatRouter({ id: '', chatList })
-    case 'profile':
-        return paths.length === 2
-            ? profileRouter({ path: paths[1], userinfo: userInfo })
-            : profileRouter({ path: '', userinfo: userInfo })
-    }
-    const route = ('/' + paths[0]) as keyof IRoute
-    return routes[route] || NotFoundPage()
+        .use(
+            ROUTES.SETTINGS_EDIT,
+            ProfilePage(UserInfo({ edit: true, editPass: false }))
+        )
+        .use(
+            ROUTES.SETTINGS_PASSWORD,
+            ProfilePage(UserInfo({ edit: false, editPass: true }))
+        )
+
+    Store.subscribe(() => Router.start(), STORE_EVENTS.INIT)
+
+
+    Store.subscribe(() => {
+        Router.go(window.location.pathname)
+        AuthActions.updateUserInfo()
+        ChatActions.getChats()
+    }, STORE_EVENTS.LOGIN_USER_SUCCESS)
+    Store.subscribe(() => Router.go(ROUTES.LOGIN), STORE_EVENTS.LOGOUT_USER_SUCCESS)
+    Store.subscribe(() => Router.go(ROUTES.SETTINGS), STORE_EVENTS.USER_UPDATED_SUCCESS)
+    Store.subscribe(() => Router.go(ROUTES.SETTINGS), STORE_EVENTS.PASSWORD_CHANGE_SUCCESS)
 }
-
-const handleRoute = (e?: Event) => {
-    e ? e.preventDefault() : {}
-    const page = getPage()
-    if (!isEmpty(page)) {
-        waitElement('main').then(el => {
-            el.innerHTML = ''
-            el.appendChild(page?.getContent() as Node)
-        })
-    }
-}
-
-window.onpopstate = handleRoute
-
-export const pushHistory = (route: string) => {
-    const state = { page: route }
-    history.pushState(state, '', state.page)
-    handleRoute()
-}
-
-window.addEventListener('popstate', handleRoute)
-window.addEventListener('hashchange', handleRoute)
-window.addEventListener('load', handleRoute)

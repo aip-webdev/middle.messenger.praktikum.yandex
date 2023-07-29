@@ -1,5 +1,5 @@
 import { checkInputWithRegExp } from './helpers.ts'
-import { isEmpty } from './isEmpty.ts'
+import { isEmpty } from '../common/isEmpty.ts'
 
 export const checkLogin = (textErrorStyle?: string, style?: string, errorStyle?: string) => {
     let correct

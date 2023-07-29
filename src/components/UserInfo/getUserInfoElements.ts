@@ -1,96 +1,57 @@
 import styles from './UserInfo.module.scss'
-import { pushHistory } from '../../routing'
 import { prettyPhoneNumber } from '../../utils/validation/dataPhonePattern.ts'
 import { List } from '../List'
 import { Input } from '../Input'
 import { Button } from '../Button'
 import { Form } from '../Form'
-import { IUserInfo, IUserInfoFields } from './types'
-import Block from '../../utils/elements/Block.ts'
-import { getFormData } from '../../utils/validation/getFormData.ts'
+import Block from '../../core/Block.ts'
 import { validateFields, VALIDATION_TYPE } from '../../utils/validation/validateFields.ts'
+import Router from '../../routing/Router.ts'
+import { ROUTES } from '../../routing'
+import AuthActions from '../../actions/AuthActions.ts'
+import { IUserInfoFields } from './types'
+import Store, { IState } from '../../store'
+import { connect } from '../../store/connect.ts'
+import { STORE_EVENTS } from '../../store/storeEvents.ts'
+import { keys } from '../../utils/common/object.ts'
+import UserActions from '../../actions/UserActions.ts'
 
-export const getUserInfoElements = (userInfo: IUserInfo, edit = false) => {
-    const handleClick = () => {
-        validateFields({
-            validation: VALIDATION_TYPE.PROFILE_EDIT,
-            style: styles.infoValue,
-            errorStyle: styles.infoValueError,
-            textErrorStyle: styles.textError,
-            fillFromPlaceholder: true,
-            submitAction: true
-        })
-            ? pushHistory('/profile')
-            : {}
-        getFormData()
-    }
-    const info = {
-        ...userInfo,
-        phone: prettyPhoneNumber(userInfo.phone).toString()
-    }
-    const items = !edit
-        ? List({
-            listStyle: styles.userInfoList,
-            itemStyle: styles.userInfoListItem,
-            items: Object.keys(userInfoFields).map(
-                (key) => `
-                <span>${userInfoFields[key as keyof IUserInfoFields]}</span>
-                <span class="${styles.infoValue}">${info[key as keyof IUserInfo]}</span>
-            `
-            )
-        })
-        : List({
-            listStyle: styles.userInfoList,
-            itemStyle: styles.userInfoListItem,
-            items: Object.keys(userInfoFields).map(
-                (key) => Block(`
-                <p>${userInfoFields[key as keyof IUserInfoFields]}</p>
-                {{{input}}}
-            `, {
-                    input: Input({
-                        style: styles.infoValue,
-                        name: key,
-                        type: getType(key),
-                        label: '',
-                        attr: getAttr(key),
-                        placeholder: info[key as keyof IUserInfo].replace(' ', ''),
-                        actions: {
-                            blur: () => validateFields({
-                                validation: VALIDATION_TYPE.PROFILE_EDIT,
-                                style: styles.infoValue,
-                                errorStyle: styles.infoValueError,
-                                textErrorStyle: styles.textError,
-                                fillFromPlaceholder: true
-                            })
-                        }
-                    })
-                })
-            )
-        })
-
+export const getUserInfoElements = (edit = false) => {
+    const successEvents = [STORE_EVENTS.GET_USER_DATA_SUCCESS, STORE_EVENTS.USER_UPDATED_SUCCESS]
+    const fieldsList = !edit ?
+        connect(
+            List(mapStateToPropsNoEdit(Store.getState())),
+            mapStateToPropsNoEdit,
+            ...successEvents
+        ) :
+        connect(
+            List(mapStateToPropsEdit(Store.getState())),
+            mapStateToPropsEdit,
+            ...successEvents
+        )
     return !edit
         ? Block(`
           {{{items}}}
           {{{buttons}}}
         `, {
-            items: items,
+            items: fieldsList,
             buttons: List({
                 listStyle: styles.userInfoList,
                 itemStyle: styles.userInfoListItem,
                 items: [
                     Button({
                         children: 'Изменить данные',
-                        onClick: () => pushHistory('/profile/edit'),
+                        onClick: () => Router.go(ROUTES.SETTINGS_EDIT),
                         style: styles.editBtn
                     }),
                     Button({
                         children: 'Изменить пароль',
-                        onClick: () => pushHistory('/profile/password'),
+                        onClick: () => Router.go(ROUTES.SETTINGS_PASSWORD),
                         style: styles.editBtn
                     }),
                     Button({
                         children: 'Выйти',
-                        onClick: () => pushHistory('/login'),
+                        onClick: () => AuthActions.logout(),
                         style: styles.logoutBtn
                     })
                 ]
@@ -101,10 +62,10 @@ export const getUserInfoElements = (userInfo: IUserInfo, edit = false) => {
               {{{items}}}
               {{{button}}}
             `, {
-                items: items,
+                items: fieldsList,
                 button: Button({
                     children: 'Сохранить',
-                    onClick: handleClick,
+                    onClick: () => UserActions.changeUserData(),
                     style: styles.saveBtn
                 })
             }),
@@ -112,22 +73,16 @@ export const getUserInfoElements = (userInfo: IUserInfo, edit = false) => {
         })
 }
 
-const userInfoFields: IUserInfoFields = {
+export const userInfoFields = {
     email: 'Почта',
     login: 'Логин',
     first_name: 'Имя',
-    last_name: 'Фамилия',
+    second_name: 'Фамилия',
     display_name: 'Имя в чате',
     phone: 'Телефон'
-}
+} as IUserInfoFields
 
-const getAttr = (key: string) => {
-    if (key.includes('name')) {
-        return 'data-name'
-    } else {
-        return `data-${key}`
-    }
-}
+const getAttr = (key: string) => key.includes('name') ? 'data-name' : `data-${key}`
 
 const getType = (field: string) => {
     switch (field) {
@@ -137,4 +92,85 @@ const getType = (field: string) => {
         return 'tel'
     }
     return 'text'
+}
+
+const mapStateToPropsNoEdit = (state: IState) => {
+    return {
+        listStyle: styles.userInfoList,
+        itemStyle: styles.userInfoListItem,
+        items: Object.keys(userInfoFields).map(
+            (key) => connect(
+                Block(
+                    `
+                <span>{{userInfoField}}</span>
+                <span class={{infoValueStyle}}>{{infoValue}}</span>
+            `,
+                    {
+                        userInfoField: userInfoFields[key as keyof IUserInfoFields],
+                        infoValueStyle: styles.infoValue,
+                        infoValue: mapStateToUserInfo(state)[key as keyof IUserData] || ''
+                    }
+                ),
+                (state: IState) => {
+                    return {
+                        userInfoField: userInfoFields[key as keyof IUserInfoFields],
+                        infoValueStyle: styles.infoValue,
+                        infoValue: mapStateToUserInfo(state) ? mapStateToUserInfo(state)[key as keyof IUserData] || '' : ''
+                    }
+                },
+                STORE_EVENTS.USER_UPDATED_SUCCESS
+            )
+        ),
+        id: 'list-userinfo-no-edit'
+    }
+}
+
+const mapStateToPropsEdit = (state: IState) => {
+    const info = mapStateToUserInfo(state)
+    const inputHandler = () => validateFields({
+        validation: VALIDATION_TYPE.PROFILE_EDIT,
+        style: styles.infoValue,
+        errorStyle: styles.infoValueError,
+        textErrorStyle: styles.textError,
+        fillFromPlaceholder: true
+    })
+    return {
+        listStyle: styles.userInfoList,
+        itemStyle: styles.userInfoListItem,
+        items: keys(userInfoFields).map(
+            (key) => Block(`
+                <p>${userInfoFields[key as keyof IUserInfoFields]}</p>
+                {{{input}}}
+            `, {
+                input: Input({
+                    style: styles.infoValue,
+                    name: key,
+                    type: getType(key),
+                    attr: getAttr(key),
+                    placeholder: info ? info[key as keyof IUserInfoFields]?.replace(' ', '') : '',
+                    actions: {
+                        blur: inputHandler,
+                        click: inputHandler
+                    }
+                })
+            })
+        ),
+        id: 'list-userinfo-edit'
+    }
+}
+const mapStateToUserInfo = (state: IState) => {
+    const userInfo = {
+        first_name: state.user?.first_name || '',
+        second_name: state.user?.second_name || '',
+        display_name: state.user?.display_name || '',
+        avatar: state.user?.avatar || '',
+        email: state.user?.email || '',
+        login: state.user?.login || '',
+        phone: state.user?.phone || ''
+
+    }
+    return {
+        ...userInfo,
+        phone: userInfo?.phone ? prettyPhoneNumber(userInfo?.phone).toString() : ''
+    } as IUserData
 }

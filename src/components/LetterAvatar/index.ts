@@ -1,6 +1,6 @@
 import { stringToColor } from '../../utils/strings/stringToColor.ts'
 import { template } from './letterAvatar.tmpl.ts'
-import Block from '../../utils/elements/Block.ts'
+import Block from '../../core/Block.ts'
 
 const stringAvatar = (name: string) => {
     const names = name.split(' ')

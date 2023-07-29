@@ -4,8 +4,7 @@ import { Form } from '../Form'
 import { IInputProps, Input } from '../Input'
 import { H3 } from '../Titles'
 import { Button } from '../Button'
-import { pushHistory } from '../../routing'
-import Block from '../../utils/elements/Block.ts'
+import Block from '../../core/Block.ts'
 import { template } from './authform.tmpl.ts'
 import { validateFields } from '../../utils/validation/validateFields.ts'
 
@@ -14,8 +13,9 @@ interface AuthFormParams {
   submitBtnText: string;
   changeBtnText: string;
   validation: string;
-  changeFormRoute: string;
   inputsInfo: IInputProps[];
+  onSubmit: () => void;
+  onChange: () => void;
 }
 
 export function AuthForm({
@@ -23,25 +23,25 @@ export function AuthForm({
     submitBtnText,
     changeBtnText,
     validation,
-    changeFormRoute,
-    inputsInfo
+    inputsInfo,
+    onSubmit,
+    onChange
 }: AuthFormParams) {
     const inputs = inputsInfo.map((info: IInputProps) =>
         Input({
             ...info,
             style: styles.inputField,
-            actions: { blur: () => validateFields({ validation }) }
+            actions: {
+                blur: () => validateFields({ validation })
+            }
         })
     )
-    const handlerSubmit = (e: Event) => {
+
+    const handleSubmit = (e: Event) => {
         e.preventDefault()
         e.stopPropagation()
-        const checked = validateFields({ validation, submitAction: true })
-        if (checked) {
-            pushHistory('/chats')
-        }
+        onSubmit()
     }
-    const handlerChange = () => pushHistory(changeFormRoute)
 
     return Form({
         children: Block(template, {
@@ -53,13 +53,13 @@ export function AuthForm({
             }),
             firstButton: Button({
                 children: submitBtnText,
-                onClick: handlerSubmit,
+                onClick: handleSubmit,
                 style: styles.button_submit,
                 type: 'submit'
             }),
             secondButton: Button({
                 children: changeBtnText,
-                onClick: handlerChange,
+                onClick: onChange,
                 style: styles.button_change
             })
         }),

@@ -1,9 +1,10 @@
 import styles from './ProfileLink.module.scss'
 import { Link } from '../Link'
-import { pushHistory } from '../../routing'
-import Block from '../../utils/elements/Block.ts'
+import Block from '../../core/Block.ts'
+import Router from '../../routing/Router.ts'
+import { ROUTES } from '../../routing'
 
-export const ProfileLink = () =>
+export const NavHeader = () =>
     Block(`
     <div class={{containerClassName}}>
         {{{link}}}
@@ -11,8 +12,8 @@ export const ProfileLink = () =>
 `, {
         link: Link({
             children: 'Профиль',
-            onClick: () => pushHistory('/profile'),
-            style: styles.profileLink
+            onClick: () => Router.go(ROUTES.SETTINGS),
+            style: styles.navHeader
         }),
         containerClassName: styles.container
     })

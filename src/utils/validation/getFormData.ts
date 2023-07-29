@@ -1,4 +1,5 @@
-export const getFormData = () => {
+type FormData = IUserData | ILoginData | IChatsFormData | IPasswordsData
+export const getFormData = (): FormData => {
     let data = {}
     const inputs = document.getElementsByTagName('input')
     Object.entries(inputs)
@@ -6,5 +7,5 @@ export const getFormData = () => {
         .forEach((input) => {
             data = { ...data, [input.name]: input.value }
         })
-    console.log(data)
+    return data as FormData
 }

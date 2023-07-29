@@ -1,15 +1,15 @@
-export const waitElementBySelector = (selector: string, element: HTMLElement): Promise<HTMLElement> => {
+export const waitElementsBySelector = (selector: string): Promise<NodeListOf<HTMLElement>> => {
     return new Promise((resolve) => {
-        if (element.querySelectorAll(selector)[0] !== null) {
-            return resolve(element.querySelectorAll(selector)[0] as HTMLElement)
+        if (document.querySelectorAll(selector) !== null) {
+            return resolve(document.querySelectorAll(selector) as NodeListOf<HTMLElement>)
         }
         const observer = new MutationObserver(() => {
-            if (element.querySelectorAll(selector)[0]) {
-                resolve(element.querySelectorAll(selector)[0] as HTMLElement)
+            if (document.querySelectorAll(selector)) {
+                resolve(document.querySelectorAll(selector) as NodeListOf<HTMLElement>)
                 observer.disconnect()
             }
         })
-        observer.observe(element, {
+        observer.observe(document, {
             childList: true,
             subtree: true
         })

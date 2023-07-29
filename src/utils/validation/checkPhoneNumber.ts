@@ -1,6 +1,6 @@
 import { errorInputText } from './errorInputText.ts'
 import { removeErrorText, setErrorStyle } from './helpers.ts'
-import { isEmpty } from './isEmpty.ts'
+import { isEmpty } from '../common/isEmpty.ts'
 
 export const checkPhoneNumber = (textErrorStyle?: string, style?: string, errorStyle?: string) => {
     const phoneInput = document.querySelector('[data-phone]') as HTMLInputElement

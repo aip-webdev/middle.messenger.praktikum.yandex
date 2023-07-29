@@ -1,14 +1,15 @@
 import styles from './ProfilePage.module.scss'
 import { ImageAvatar } from '../../components/ImageAvatar'
 import { Button } from '../../components/Button'
-import { pushHistory } from '../../routing'
 import { template } from './profilePage.tmpl.js'
-import Block from '../../utils/elements/Block.ts'
+import Block from '../../core/Block.ts'
+import Router from '../../routing/Router.ts'
+import { ROUTES } from '../../routing'
+
 
 export const ProfilePage = (children?: unknown) => {
-    const handleClick = () => pushHistory('/chats')
     return Block(template, {
-        toChats: Button({ onClick: handleClick, style: styles.arrowBtn }),
+        toChats: Button({ onClick: () => Router.go(ROUTES.MESSENGER), style: styles.arrowBtn }),
         avatar: ImageAvatar(),
         children: children,
         containerClassName: styles.container,

@@ -1,6 +1,22 @@
 @import "src/styles/colors.module";
 @import "src/styles/mixins.module";
 
+.addChatBtn {
+  @include gray-input;
+
+  background-color: $gray-ef;
+  border-radius: 5px;
+  color: $gray;
+  height: fit-content;
+  width: auto;
+  line-height: 4vh;
+  margin: 0 1.4vh 1.4vh;
+
+  &::placeholder {
+    text-align: left;
+  }
+}
+
 .container {
   @include page-container;
 }
@@ -55,6 +71,18 @@
   }
 }
 
+.inputField {
+  position: relative;
+  width: 90%;
+  line-height: 3.5vh;
+  border-bottom: 1px solid #3369F3;
+  padding: 0 1vw;
+  color: $black;
+
+  &::placeholder {
+    @include gray-color;
+  }
+}
 
 .nav {
   @include flex-center;

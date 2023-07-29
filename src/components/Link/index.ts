@@ -1,7 +1,7 @@
 import styles from './Link.module.scss'
 import { generateRandomString } from '../../utils/strings/generateRandomString.ts'
 import { template } from './link.tmpl.ts'
-import Block from '../../utils/elements/Block.ts'
+import Block from '../../core/Block.ts'
 
 interface ILinkProps {
   id?: string;

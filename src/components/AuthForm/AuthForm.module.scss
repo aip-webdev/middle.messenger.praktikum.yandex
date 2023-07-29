@@ -2,16 +2,9 @@
 @import "src/styles/mixins.module";
 
 .authForm {
-  @include flex-center;
+  @include form-style;
 
-  flex-direction: column;
-  width: 26.5vw;
   min-height: 450px;
-  max-height: fit-content;
-  background-color: $white;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 14%);
-  border-radius: 12px;
-  padding: 5.5vh 2.3vw 2.1vh;
 }
 
 .button {

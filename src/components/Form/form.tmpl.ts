@@ -1,4 +1,7 @@
 export const template = `<form
+        {{#if id}}
+            id={{id}}
+        {{/if}}
         {{#if style}}
             class={{style}}
         {{/if}}

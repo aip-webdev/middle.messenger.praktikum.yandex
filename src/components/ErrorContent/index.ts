@@ -1,7 +1,8 @@
 import styles from './ErrorContetnt.module.scss'
 import { H3 } from '../Titles'
 import { template } from './errorContent.tmpl.ts'
-import Block from '../../utils/elements/Block.ts'
+import Block from '../../core/Block.ts'
+import { ROUTES } from '../../routing'
 
 interface IErrorContentProps {
   code: string;
@@ -14,7 +15,7 @@ export const ErrorContent = ({
     code,
     message,
     linkText,
-    link = '/chats'
+    link = ROUTES.MESSENGER
 }: IErrorContentProps) =>
     Block(template, {
         contentStyle: styles.content,

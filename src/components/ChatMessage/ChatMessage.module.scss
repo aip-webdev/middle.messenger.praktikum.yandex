@@ -1,12 +1,20 @@
 @import "src/styles/colors.module";
 @import "src/styles/mixins.module";
 
-.chatMessage {
+.chatMessageRight, .chatMessageLeft {
   max-width: 32vw;
   background-color: $gray-f8;
-  padding: 1.4vh;
+  padding: 1.7vh;
   position: relative;
   border-radius: 1em;
+}
+
+.chatMessageRight {
+  align-self: flex-end;
+}
+
+.chatMessageLeft {
+  align-self: flex-start;
 }
 
 .messageContent {
@@ -19,5 +27,5 @@
   font-size: 1.2vh;
   position: absolute;
   bottom: 0.3vh;
-  right: 2%;
+  right: 6%;
 }

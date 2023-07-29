@@ -1,14 +1,14 @@
-import { isEmpty } from './isEmpty.ts'
+import { isEmpty } from '../common/isEmpty.ts'
 import { checkEmptyValue } from './checkEmptyValue.ts'
 import { checkPhoneNumber } from './checkPhoneNumber.ts'
 import { checkMail } from './checkMail.ts'
 import { checkPassword } from './checkPassword.ts'
-import { getFormData } from './getFormData.ts'
 import { checkLogin } from './checkLogin.ts'
 import { checkNames } from './checkNames.ts'
 import { checkMessage } from './checkMessage.ts'
+import { getFormData } from './getFormData.ts'
 
-interface ValidationCases {
+export interface ValidationCases {
   MESSAGE: string;
   PASSWORD_CHANGE: string;
   PROFILE_EDIT: string;
@@ -24,8 +24,8 @@ export const VALIDATION_TYPE = {
     SIGN_UP: 'registration'
 } as ValidationCases
 
-interface ValidateProps {
-  validation: string,
+export interface ValidateProps {
+  validation: ValidationCases[keyof ValidationCases],
   style?: string,
   errorStyle?: string,
   textErrorStyle?: string,
@@ -93,6 +93,6 @@ export const validateFields = ({
         correct = checkMessage(textErrorStyle, style, errorStyle)
         break
     }
-    if (correct && submitAction) getFormData()
+    if (correct && submitAction) console.log(getFormData())
     return correct
 }

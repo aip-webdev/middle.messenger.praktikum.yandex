@@ -1,14 +1,14 @@
-type ProxyProps<T extends CommonObject> = {
+type ProxyProps<T extends Indexed> = {
   [P in keyof T]: T[P];
 };
 
-type ProxyHandler<T extends CommonObject> = {
+type ProxyHandler<T extends Indexed> = {
   get(target: T, prop: string): unknown;
   set(target: T, prop: string, value: T[keyof T]): boolean;
   deleteProperty(target: T, prop: string): boolean;
 };
 
-export const makePropsProxy = <T extends CommonObject>(props: T): ProxyProps<T> => {
+export const makePropsProxy = <T extends Indexed>(props: T): ProxyProps<T> => {
     const handler: ProxyHandler<T> = {
         get(target, prop) {
             const value = target[prop]
