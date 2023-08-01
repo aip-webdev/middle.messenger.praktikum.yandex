@@ -1,3 +1,5 @@
+import { Indexed } from '../types'
+
 type ProxyProps<T extends Indexed> = {
   [P in keyof T]: T[P];
 };

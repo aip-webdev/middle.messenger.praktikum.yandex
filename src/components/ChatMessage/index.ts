@@ -2,6 +2,7 @@ import styles from './ChatMessage.module.scss'
 import { template } from './chatMessage.tmpl.ts'
 import Block from '../../core/Block.ts'
 import { getTimeDifference } from '../../utils/strings/getTimeDifference.ts'
+import { IMessage } from '../../types'
 
 export const ChatMessage = (userId: number, message: IMessage | undefined) => {
     const chatMessageStyle = message?.user_id === userId ? styles.chatMessageRight : styles.chatMessageLeft

@@ -3,6 +3,7 @@ import set from '../utils/common/set.ts'
 import { StoreEvents } from './storeEvents.ts'
 import merge from '../utils/common/merge.ts'
 import isEqual from '../utils/common/isEqual.ts'
+import { IChatsState, Indexed, IUserData } from '../types'
 
 export interface IStateError {
   code: number | null;

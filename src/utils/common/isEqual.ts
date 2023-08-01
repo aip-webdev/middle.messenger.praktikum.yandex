@@ -1,3 +1,5 @@
+import { Indexed } from '../../types'
+
 function isEqual(value1: unknown, value2: unknown): boolean {
     if (typeof value1 !== typeof value2) {
         return false

@@ -1,3 +1,5 @@
+import { IChatsFormData, ILoginData, IPasswordsData, IUserData } from '../../types'
+
 type FormData = IUserData | ILoginData | IChatsFormData | IPasswordsData
 export const getFormData = (): FormData => {
     let data = {}

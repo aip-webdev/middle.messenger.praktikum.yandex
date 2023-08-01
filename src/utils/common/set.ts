@@ -1,3 +1,5 @@
+import { Indexed } from '../../types'
+
 function set(obj: Indexed | unknown, path: string, value: unknown): Indexed | unknown {
     if (typeof path !== 'string') throw new Error('path must be string')
     if (typeof obj !== 'object' || obj === null) return obj

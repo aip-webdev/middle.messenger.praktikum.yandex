@@ -1,4 +1,5 @@
 import Store from '../../store'
+import { AnyFun } from '../../types'
 
 function checkAuth(f: AnyFun) {
     return function() {

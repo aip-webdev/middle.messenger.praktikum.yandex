@@ -1,8 +1,10 @@
-type Indexed = { [key: string]: unknown }
+export interface Indexed {
+  [key: string]: unknown;
+}
 
-type AnyFun = (...args: (unknown)[]) => void | unknown
+export type AnyFun = (...args: (unknown)[]) => void | unknown
 
-interface IUserData {
+export interface IUserData {
   id?: number,
   first_name: string,
   second_name: string,
@@ -14,7 +16,7 @@ interface IUserData {
   avatar?: string
 }
 
-interface IChat {
+export interface IChat {
   id: number,
   created_by?: number,
   title: string,
@@ -26,7 +28,7 @@ interface IChat {
   token?: string
 }
 
-interface IMessage {
+export interface IMessage {
   id?: string,
   chat_id?: number,
   user_id: number,
@@ -36,7 +38,7 @@ interface IMessage {
   file?: IMessageFile
 }
 
-interface IMessageFile {
+export interface IMessageFile {
   id: number;
   user_id: number;
   path: string;
@@ -46,22 +48,22 @@ interface IMessageFile {
   upload_date: string;
 }
 
-interface ILoginData {
+export interface ILoginData {
   login: string,
   password: string,
 }
 
-interface IChatsFormData {
+export interface IChatsFormData {
   search: string;
   message: string;
 }
 
-interface IPasswordsData {
+export interface IPasswordsData {
   oldPassword: string,
   newPassword: string,
 }
 
-interface IChatsState {
+export interface IChatsState {
   loading: boolean,
   list: IChat[]
 }

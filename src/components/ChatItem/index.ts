@@ -7,6 +7,7 @@ import { getTimeDifference } from '../../utils/strings/getTimeDifference.ts'
 import Store, { IState } from '../../store'
 import { connect } from '../../store/connect.ts'
 import { STORE_EVENTS } from '../../store/storeEvents.ts'
+import { IChat } from '../../types'
 
 interface IChatItemProps {
   chatId: number;

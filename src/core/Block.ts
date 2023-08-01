@@ -5,6 +5,7 @@ import Handlebars from 'handlebars'
 import styles from '../styles/style.module.scss'
 import isEqual from '../utils/common/isEqual.ts'
 import { keys } from '../utils/common/object.ts'
+import { Indexed } from '../types'
 
 type BlockChildren = {
   [key: string]: IBlock | IBlock[];
@@ -23,6 +24,10 @@ type BlockMeta = {
 };
 type Events = { [key: string]: (e: Event) => void }
 
+
+const NOOP = () => {
+}
+
 export interface IBlock {
   id: string,
   setProps: (props: Indexed) => void;
@@ -31,9 +36,6 @@ export interface IBlock {
   show: () => void;
   hide: () => void;
   dispatchComponentDidMount: (callback?: () => void) => void;
-}
-
-const NOOP = () => {
 }
 
 export default function Block(

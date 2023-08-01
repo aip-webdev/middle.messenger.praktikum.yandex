@@ -1,3 +1,5 @@
+import { Indexed } from '../../types'
+
 function merge(obj1: Indexed, obj2: Indexed): Indexed {
     const merged: Indexed = {}
 

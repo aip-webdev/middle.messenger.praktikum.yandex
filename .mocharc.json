@@ -1,0 +1,19 @@
+{
+  "require": [
+    "ts-node/register",
+    "mochaSetup.cjs"
+  ],
+  "extensions": [
+    "ts"
+  ],
+  "spec": [
+    "src/**/*.test.*"
+  ],
+  "watch-files": [
+    "src"
+  ],
+  "node-option": [
+    "experimental-specifier-resolution=node",
+    "loader=ts-node/esm"
+  ]
+}

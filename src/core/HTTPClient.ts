@@ -1,4 +1,5 @@
 import queryStringify from '../utils/strings/querySringify.ts'
+import { Indexed } from '../types'
 
 enum METHOD {
   GET = 'GET',

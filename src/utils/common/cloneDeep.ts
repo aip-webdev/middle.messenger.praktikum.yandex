@@ -1,3 +1,5 @@
+import { Indexed } from '../../types'
+
 function cloneDeep(obj: unknown) {
     if (obj === null || typeof obj !== 'object') {
         return obj

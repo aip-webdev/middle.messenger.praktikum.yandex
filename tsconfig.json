@@ -1,24 +1,31 @@
 {
+  "ts-node": {
+    "files": true
+  },
   "compilerOptions": {
     "allowImportingTsExtensions": true,
-    "baseUrl": "./src",
     "declaration": false,
     "lib": [
-      "dom",
-      "esnext"
+      "esnext",
+      "dom"
     ],
-    "module": "commonjs",
+    "module": "ES6",
     "outDir": "build",
     "resolveJsonModule": true,
     "strictNullChecks": true,
     "target": "es2022",
     "moduleResolution": "node",
     "isolatedModules": true,
-    "types": ["vite/client"],
+    "types": [
+      "vite/client",
+      "mocha",
+      "node"
+    ],
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "useDefineForClassFields": true,
     "incremental": true,
     "skipLibCheck": true,
@@ -32,7 +39,11 @@
     "sourceMap": true
   },
   "include": [
-    "**/*.ts"
+    "src",
+    "src/**/*.ts"
   ],
-  "exclude": ["node_modules/", "build/", "public/"]
+  "exclude": [
+    "node_modules/",
+    "build"
+  ]
 }

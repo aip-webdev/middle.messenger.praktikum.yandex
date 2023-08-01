@@ -7,6 +7,7 @@ import checkValidate from '../utils/decorators/checkValidate.ts'
 import { isEmpty } from '../utils/common/isEmpty.ts'
 import Store from '../store'
 import UserApi from '../api/UserApi.ts'
+import { ILoginData, IUserData } from '../types'
 
 function AuthActions() {
     const login = async (loginData: ILoginData | unknown) => {
