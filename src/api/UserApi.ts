@@ -1,6 +1,5 @@
 import HTTPClient from '../core/HTTPClient.ts'
 import omit from '../utils/common/omit.ts'
-import { Indexed } from '../types'
 
 function UserApi() {
     const client = HTTPClient('/user')

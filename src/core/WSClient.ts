@@ -1,7 +1,6 @@
 import Store from '../store'
 import { STORE_EVENTS } from '../store/storeEvents.ts'
 import ChatApi from '../api/ChatApi.ts'
-import { IChat, IMessage } from '../types'
 
 interface IWSClient {
   connect(chatId: number, ws: WebSocket): void;

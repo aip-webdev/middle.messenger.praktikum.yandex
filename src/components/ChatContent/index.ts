@@ -16,7 +16,6 @@ import { connect } from '../../store/connect.ts'
 import { STORE_EVENTS } from '../../store/storeEvents.ts'
 import WSClient from '../../core/WSClient.ts'
 import { getFormData } from '../../utils/validation/getFormData.ts'
-import { IChat, IChatsFormData } from '../../types'
 
 const validationProps = {
     validation: VALIDATION_TYPE.MESSAGE,

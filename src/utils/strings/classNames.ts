@@ -1,5 +1,3 @@
-import { Indexed } from '../../types'
-
 function classNames(...args: unknown[]): string {
     const classes: string[] = []
 

@@ -1,5 +1,4 @@
 import { validateFields, ValidateProps } from '../validation/validateFields.ts'
-import { AnyFun } from '../../types'
 
 function checkValidate(f: AnyFun, { ...args }: ValidateProps) {
     return function() {

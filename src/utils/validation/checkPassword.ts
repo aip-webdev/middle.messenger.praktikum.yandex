@@ -1,4 +1,4 @@
-import { errorInputText } from './errorInputText.js'
+import { errorInputText } from './errorInputText.ts'
 import { checkInputWithRegExp, removeErrorText, setErrorStyleList } from './helpers'
 import { checkEmptyValue } from './checkEmptyValue.ts'
 

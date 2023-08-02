@@ -6,7 +6,7 @@ import Store from '../store'
 import { STORE_EVENTS } from '../store/storeEvents.ts'
 import { IBlock } from '../core/Block.ts'
 
-interface IRouter {
+export interface IRouter {
   use(pathname: string, block: IBlock, rootID?: string, rootBlock?: IBlock): IRouter;
 
   forward(): void;

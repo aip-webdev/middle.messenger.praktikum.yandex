@@ -10,7 +10,6 @@ import { ROUTES } from '../routing'
 import UserApi from '../api/UserApi.ts'
 import { merge } from 'immutable'
 import WSClient from '../core/WSClient.ts'
-import { IChat, Indexed, IUserData } from '../types'
 
 function ChatActions() {
     const getChats = async () => {

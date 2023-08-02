@@ -5,7 +5,6 @@ import Handlebars from 'handlebars'
 import styles from '../styles/style.module.scss'
 import isEqual from '../utils/common/isEqual.ts'
 import { keys } from '../utils/common/object.ts'
-import { Indexed } from '../types'
 
 type BlockChildren = {
   [key: string]: IBlock | IBlock[];

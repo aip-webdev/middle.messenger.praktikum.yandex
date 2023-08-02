@@ -9,7 +9,7 @@
       "esnext",
       "dom"
     ],
-    "module": "ES6",
+    "module": "commonjs",
     "outDir": "build",
     "resolveJsonModule": true,
     "strictNullChecks": true,
@@ -35,8 +35,7 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "sourceMap": true
+    "noUnusedParameters": true
   },
   "include": [
     "src",

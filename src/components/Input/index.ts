@@ -1,7 +1,6 @@
 import Block from '../../core/Block.ts'
 import merge from '../../utils/common/merge.ts'
 import { eventPhoneHandler } from '../../utils/validation/dataPhonePattern.ts'
-import { Indexed } from '../../types'
 
 export interface IInputProps {
   style?: string;

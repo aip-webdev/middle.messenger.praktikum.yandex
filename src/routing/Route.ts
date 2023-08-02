@@ -24,6 +24,7 @@ export function Route(pathname: string, block: IBlock, rootQuery = 'main'): IRou
     }
 
     const rendering = () => {
+        console.log(rootQuery)
         render(rootQuery, block)
     }
     return Object.freeze({

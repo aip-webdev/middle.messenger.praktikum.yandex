@@ -15,7 +15,6 @@ import { connect } from '../../store/connect.ts'
 import { STORE_EVENTS } from '../../store/storeEvents.ts'
 import { keys } from '../../utils/common/object.ts'
 import UserActions from '../../actions/UserActions.ts'
-import { IUserData } from '../../types'
 
 export const getUserInfoElements = (edit = false) => {
     const successEvents = [STORE_EVENTS.GET_USER_DATA_SUCCESS, STORE_EVENTS.USER_UPDATED_SUCCESS]

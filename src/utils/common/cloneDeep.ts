@@ -1,11 +1,9 @@
-import { Indexed } from '../../types'
-
-function cloneDeep(obj: unknown) {
+function cloneDeep<T>(obj: T): T {
     if (obj === null || typeof obj !== 'object') {
         return obj
     }
 
-    const clone = Array.isArray(obj) ? [] : {}
+    const clone = Array.isArray(obj) ? [] as T : {} as T
 
     for (const key in obj) {
         if (Object.prototype.hasOwnProperty.call(obj, key)) {

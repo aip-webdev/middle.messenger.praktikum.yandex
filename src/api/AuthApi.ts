@@ -1,5 +1,4 @@
 import HTTPClient from '../core/HTTPClient.ts'
-import { ILoginData, IUserData } from '../types'
 
 function AuthApi() {
     const client = HTTPClient('/auth')

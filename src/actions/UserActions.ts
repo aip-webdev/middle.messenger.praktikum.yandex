@@ -9,7 +9,6 @@ import styles from '../components/UserInfo/UserInfo.module.scss'
 import omit from '../utils/common/omit.ts'
 import isEqual from '../utils/common/isEqual.ts'
 import Router from '../routing/Router.ts'
-import { Indexed, IPasswordsData, IUserData } from '../types'
 
 function UserActions() {
     const changeUserData = () => {

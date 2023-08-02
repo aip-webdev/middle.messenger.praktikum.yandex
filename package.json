@@ -2,7 +2,6 @@
   "name": "messenger",
   "private": false,
   "version": "0.0.1",
-  "type": "module",
   "engines": {
     "npm": ">=9.0.0",
     "node": ">=18.6.0"
@@ -17,7 +16,7 @@
     "lint:stylelint": "stylelint \"**/*.scss\"",
     "stylelint:fix": "stylelint \"**/*.scss\" --fix",
     "lint:all": "eslint src && stylelint \"**/*.scss\"",
-    "test": "mocha"
+    "test": "mocha --require ts-node/register --require ./mochaSetup.cjs './src/**/*.test.ts'"
   },
   "husky": {
     "hooks": {

@@ -1,27 +1,18 @@
 import { IRoute, Route } from './Route.ts'
-import sinonChai from 'sinon-chai'
-import { assert, use } from 'chai'
-import sinon, { createSandbox } from 'sinon'
+import { assert } from 'chai'
 import Block, { IBlock } from '../core/Block.ts'
+import { waitElement } from '../utils/elements/waitElement.ts'
 
 describe('Route', () => {
-    use(sinonChai)
-    const sandbox = createSandbox()
     let route: IRoute
     let block: IBlock
     let rootQuery
     let pathname: string
-    let render: ReturnType<typeof sandbox.spy>
     beforeEach(() => {
-        block = Block('<div>Первый блок</div>')
-        rootQuery = 'main'
+        block = Block('<div>Блок</div>')
+        rootQuery = 'app'
         pathname = '/route-1'
         route = Route(pathname, block, rootQuery)
-        render = sandbox.spy(route, 'render')
-    })
-
-    afterEach(() => {
-        sinon.reset()
     })
 
     it('should have the correct pathname', () => {
@@ -40,6 +31,9 @@ describe('Route', () => {
 
     it('should render correctly', () => {
         route.render()
-        assert.isTrue(render.calledOnce)
+        assert.exists(block.getContent()?.innerHTML)
+        waitElement('app').then(app => {
+            assert.isTrue(app.innerHTML.includes(block.getContent()!.innerHTML))
+        })
     })
 })

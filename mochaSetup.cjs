@@ -5,6 +5,8 @@ const { window } = new JSDOM("<div id=\"app\"></div>", {
 });
 
 global.window = window;
+global.window.location = window.location;
+global.history = window.history;
 global.document = window.document;
 global.DocumentFragment = window.DocumentFragment;
 require.extensions[".scss"] = function() {

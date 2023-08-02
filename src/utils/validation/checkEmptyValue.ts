@@ -1,5 +1,5 @@
-import { isEmpty } from '../common/isEmpty.js'
-import { errorInputText } from './errorInputText.js'
+import { isEmpty } from '../common/isEmpty.ts'
+import { errorInputText } from './errorInputText.ts'
 import { removeErrorText, setErrorStyle } from './helpers'
 
 export const checkEmptyValue = (
