@@ -10,6 +10,7 @@ global.window.location = window.location;
 global.history = window.history;
 global.document = window.document;
 global.DocumentFragment = window.DocumentFragment;
+global.FormData = window.FormData;
 require.extensions[".scss"] = function() {
   module.exports = () => ({});
 };
