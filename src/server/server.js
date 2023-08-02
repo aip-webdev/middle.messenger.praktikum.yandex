@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url'
 import compression from 'compression'
 import helmet from 'helmet'
 
-const PORT = 3000
+const PORT = process.env.PORT ?? 3000
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const app = express()
 
