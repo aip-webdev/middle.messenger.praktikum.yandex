@@ -11,9 +11,6 @@ describe('HTTPClient', () => {
     beforeEach(() => {
         xhr = sinon.useFakeXMLHttpRequest()
 
-        //@ts-expect-error
-        global.XMLHttpRequest = sinon.useFakeXMLHttpRequest()
-
         xhr.onCreate = (req) => {
             requests.push(req)
         }
@@ -96,7 +93,7 @@ describe('HTTPClient', () => {
             httpClient.putFile(url, { data })
 
             const [request] = requests
-          
+
             expect(request.method).to.equal(METHOD.PUT)
             expect(request.requestBody).to.equal(data)
             expect(request.url).to.equal(expectedUrl)
