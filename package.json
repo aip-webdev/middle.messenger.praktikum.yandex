@@ -8,9 +8,9 @@
   },
   "scripts": {
     "dev": "vite && tsc --noEmit --watch",
-    "build": " tsc --noEmit && vite build && cp src/server/server.js build",
+    "build": " tsc --noEmit && vite build && cp src/server/server.mjs build",
     "preview": "vite preview",
-    "start": "npm run build && node build/server.js",
+    "start": "npm run build && node build/server.mjs",
     "lisn:eslint": "eslint src",
     "eslint:fix": "eslint --fix src",
     "lint:stylelint": "stylelint \"**/*.scss\"",
