@@ -4,10 +4,12 @@
   },
   "compilerOptions": {
     "allowImportingTsExtensions": true,
+    "baseUrl": "./src",
     "declaration": false,
     "lib": [
-      "esnext",
-      "dom"
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
     "module": "commonjs",
     "outDir": "build",
@@ -18,14 +20,12 @@
     "isolatedModules": true,
     "types": [
       "vite/client",
-      "mocha",
-      "node"
+      "mocha"
     ],
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "useDefineForClassFields": true,
     "incremental": true,
     "skipLibCheck": true,
@@ -39,11 +39,11 @@
     "sourceMap": true
   },
   "include": [
-    "src",
-    "src/**/*.ts"
+    "**/*.ts"
   ],
   "exclude": [
     "node_modules/",
-    "build"
+    "build/",
+    "public/"
   ]
 }
