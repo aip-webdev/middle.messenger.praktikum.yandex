@@ -8,13 +8,13 @@ export default defineConfig({
         checker({
             typescript: true,
             eslint: {
-                lintCommand: 'eslint src/**/*.ts',
+                lintCommand: 'eslint **/*.ts',
                 dev: {
                     logLevel: ['error']
                 }
             },
             stylelint: {
-                lintCommand: 'stylelint src/**/*.scss',
+                lintCommand: 'stylelint **/*.scss',
                 dev: {
                     logLevel: ['error']
                 }
@@ -22,7 +22,7 @@ export default defineConfig({
         }),
         handlebars()
     ],
-    root: 'src/client/',
+    root: 'src/client',
     build: {
         outDir: resolve(__dirname, 'build'),
         emptyOutDir: true
