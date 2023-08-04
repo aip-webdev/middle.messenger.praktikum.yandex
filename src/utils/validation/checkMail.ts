@@ -1,4 +1,4 @@
-import { isEmpty } from '../common/isEmpty.js'
+import { isEmpty } from '../common/isEmpty.ts'
 import { checkInputWithRegExp } from './helpers'
 
 export const checkMail = (textErrorStyle?: string, style?: string, errorStyle?: string) => {

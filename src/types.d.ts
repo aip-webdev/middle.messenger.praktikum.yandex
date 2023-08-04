@@ -1,4 +1,6 @@
-type Indexed = { [key: string]: unknown }
+interface Indexed {
+  [key: string]: unknown;
+}
 
 type AnyFun = (...args: (unknown)[]) => void | unknown
 

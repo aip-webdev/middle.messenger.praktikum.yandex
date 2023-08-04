@@ -1,10 +1,14 @@
 {
+  "ts-node": {
+    "files": true
+  },
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "baseUrl": "./src",
     "declaration": false,
     "lib": [
       "dom",
+      "dom.iterable",
       "esnext"
     ],
     "module": "commonjs",
@@ -14,7 +18,10 @@
     "target": "es2022",
     "moduleResolution": "node",
     "isolatedModules": true,
-    "types": ["vite/client"],
+    "types": [
+      "vite/client",
+      "mocha"
+    ],
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
@@ -34,5 +41,9 @@
   "include": [
     "**/*.ts"
   ],
-  "exclude": ["node_modules/", "build/", "public/"]
+  "exclude": [
+    "node_modules/",
+    "build/",
+    "public/"
+  ]
 }

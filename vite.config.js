@@ -3,13 +3,26 @@ import { defineConfig } from 'vite'
 import handlebars from 'vite-plugin-handlebars'
 import checker from 'vite-plugin-checker'
 
-
 export default defineConfig({
     plugins: [
-        checker({ typescript: true }),
+        checker({
+            typescript: true,
+            eslint: {
+                lintCommand: 'eslint **/*.ts',
+                dev: {
+                    logLevel: ['error']
+                }
+            },
+            stylelint: {
+                lintCommand: 'stylelint **/*.scss',
+                dev: {
+                    logLevel: ['error']
+                }
+            }
+        }),
         handlebars()
     ],
-    root: 'src/client/',
+    root: 'src/client',
     build: {
         outDir: resolve(__dirname, 'build'),
         emptyOutDir: true

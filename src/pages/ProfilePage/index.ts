@@ -1,7 +1,7 @@
 import styles from './ProfilePage.module.scss'
 import { ImageAvatar } from '../../components/ImageAvatar'
 import { Button } from '../../components/Button'
-import { template } from './profilePage.tmpl.js'
+import { template } from './profilePage.tmpl.ts'
 import Block from '../../core/Block.ts'
 import Router from '../../routing/Router.ts'
 import { ROUTES } from '../../routing'

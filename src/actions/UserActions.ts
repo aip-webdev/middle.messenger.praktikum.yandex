@@ -11,34 +11,36 @@ import isEqual from '../utils/common/isEqual.ts'
 import Router from '../routing/Router.ts'
 
 function UserActions() {
-    const changeUserData = () => {
+    const changeUserData = async () => {
         const userData = getFormData()
         if (isEqual(userData, omit(['id', 'avatar'], Store.getState()?.user as unknown as Indexed))) {
             Router.back()
             return new Promise(() => {
             })
         }
-        return UserApi.changeUserData(userData as IUserData).then((req) => {
-            const userInfo = req.data as IUserData
-            Store.set('user', userInfo, STORE_EVENTS.USER_UPDATED_SUCCESS)
-        })
+        const req = await UserApi.changeUserData(userData as IUserData)
+        const userInfo_1 = req.data as IUserData
+        Store.set('user', userInfo_1, STORE_EVENTS.USER_UPDATED_SUCCESS)
     }
 
-    const changePassword = () => {
+    const changePassword = async () => {
         const passwordsData = getFormData()
-        return UserApi.changePassword(passwordsData as IPasswordsData).then(() => {
-            Store.set('error', '', STORE_EVENTS.PASSWORD_CHANGE_SUCCESS)
-        })
+        await UserApi.changePassword(passwordsData as IPasswordsData)
+        Store.set('error', '', STORE_EVENTS.PASSWORD_CHANGE_SUCCESS)
     }
 
-    const changeAvatar = (target: EventTarget) => {
+    const changeAvatar = async (target: EventTarget) => {
         const form = new FormData(target as HTMLFormElement)
-        return UserApi.changeAvatar(form).then((req) => {
+        try {
+            const req = await UserApi.changeAvatar(form)
             const data = req.data as unknown
-            Store.merge({ user: omit(['status'], data as Indexed), error: '' }, STORE_EVENTS.USER_AVATAR_CHANGED_SUCCESS)
-        }).catch(e =>
-            Store.set('error', e, STORE_EVENTS.USER_AVATAR_CHANGED_FAILURE)
-        )
+            Store.merge({
+                user: omit(['status'], data as Indexed),
+                error: ''
+            }, STORE_EVENTS.USER_AVATAR_CHANGED_SUCCESS)
+        } catch (e) {
+            return Store.set('error', e, STORE_EVENTS.USER_AVATAR_CHANGED_FAILURE)
+        }
     }
     const commonValidationProps = {
         style: styles.infoValue,

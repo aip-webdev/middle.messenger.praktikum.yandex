@@ -1,6 +1,6 @@
 import queryStringify from '../utils/strings/querySringify.ts'
 
-enum METHOD {
+export enum METHOD {
   GET = 'GET',
   POST = 'POST',
   PUT = 'PUT',

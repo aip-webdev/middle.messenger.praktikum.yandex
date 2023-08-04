@@ -1,4 +1,4 @@
-import { template } from './form.tmpl.js'
+import { template } from './form.tmpl.ts'
 import Block from '../../core/Block.ts'
 
 interface IFormProps {

@@ -1,12 +1,12 @@
-import { IBlock } from '../core/Block.ts'
-import Route, { IRoute } from './Route.ts'
+import { IRoute, Route } from './Route.ts'
 import { isEmpty } from '../utils/common/isEmpty.ts'
 import { NotFoundPage } from '../pages/NotFoundPage'
 import { ROUTES } from './index.ts'
 import Store from '../store'
 import { STORE_EVENTS } from '../store/storeEvents.ts'
+import { IBlock } from '../core/Block.ts'
 
-interface IRouter {
+export interface IRouter {
   use(pathname: string, block: IBlock, rootID?: string, rootBlock?: IBlock): IRouter;
 
   forward(): void;

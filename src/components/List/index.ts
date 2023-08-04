@@ -1,5 +1,5 @@
-import { listTemplate } from './list.tmpl.js'
 import Block from '../../core/Block.ts'
+import { listTemplate } from './list.tmpl.ts'
 
 interface IListProps {
   listStyle: string;
